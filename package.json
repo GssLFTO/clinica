@@ -1,0 +1,9 @@
+{
+  "name": "luminos-web",
+  "version": "1.0.0",
+  "description": "Backend para chatbot",
+  "main": "netlify/functions/chat.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.1.3"
+  }
+}
