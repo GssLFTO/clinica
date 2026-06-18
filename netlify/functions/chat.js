@@ -1,55 +1,29 @@
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-exports.handler = async function(event, context) {
-  // 1. Verificamos que solo se permitan peticiones POST (envío de datos)
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Método no permitido' };
-  }
-
-  // 2. Tomamos tu API Key desde las "Variables de Entorno" secretas de Netlify.
-  // ¡Nunca la escribimos aquí directamente!
-  const apiKey = process.env.GOOGLE_API_KEY;
-  
-  if (!apiKey) {
-    console.error("Error: La API Key no está configurada en Netlify.");
-    return { 
-      statusCode: 500, 
-      body: JSON.stringify({ error: 'Configuración de servidor incompleta.' }) 
-    };
+exports.handler = async (event, context) => {
+  // Solo permitimos el método POST
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
   }
 
   try {
-    // 3. Leemos lo que nos envió la página web (el mensaje del paciente y el historial)
-    const body = JSON.parse(event.body);
-    const { contents, systemInstruction } = body;
+    const { prompt } = JSON.parse(event.body);
+    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    // 4. Preparamos la llamada a Google Gemini, ahora sí usando la llave secreta
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
 
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents, systemInstruction })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error de la API de Google: ${response.status}`);
-    }
-
-    // 5. Recibimos la respuesta de Google y se la enviamos de vuelta a tu página web
-    const data = await response.json();
-    
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ reply: text }),
     };
-
   } catch (error) {
-    console.error("Error en el servidor seguro:", error);
+    console.error("Error en la función:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'No se pudo conectar con la Inteligencia Artificial.' })
+      body: JSON.stringify({ error: "Error interno del servidor" }),
     };
   }
+};
