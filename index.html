@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINOS — Centro Neuroclínico de Psicoterapia Avanzada</title>
+    <meta name="description" content="LUMINOS: Restaurando tu bienestar mental y físico a través de la neurociencia avanzada, psicoterapia asistida por psilocibina y micología médica en un entorno seguro.">
+    <meta name="keywords" content="terapia psicodélica, psilocibina, micología médica, depresión resistente, ansiedad, dolor neuropático, neuroplasticidad, centro neuroclínico">
+    <meta name="author" content="LUMINOS Centro Neuroclínico">
+    
+    <!-- Schema.org Markup para Clínicas Médicas (SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "LUMINOS — Centro Neuroclínico de Psicoterapia Avanzada",
+      "description": "Tratamientos médicos de vanguardia para condiciones complejas integrando neurociencia y psicoterapias innovadoras.",
+      "url": "https://www.luminos.com",
+      "logo": "https://www.luminos.com/logo.png",
+      "medicalSpecialty": [
+        "Psychiatric",
+        "Neurologic"
+      ],
+      "availableService": {
+        "@type": "MedicalTherapy",
+        "name": "Psicoterapia Avanzada y Terapia Asistida"
+      }
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Phosphor Icons for clinical/clean look) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        anthracite: '#2D3748',
+                        surgical: '#F8FAFC',
+                        clinical: {
+                            blue: '#1A365D',     // Azul Clínico Profundo
+                            light: '#2B6CB0'
+                        },
+                        accent: {
+                            mint: '#38B2AC',     // Turquesa/Menta (Sesiones/Integra)
+                            violet: '#805AD5',   // Violeta Amatista (Medical Series)
+                            gold: '#D69E2E',     // Oro Viejo (Reserve)
+                            indigo: '#4F46E5',   // Azul Índigo (Academy/Research)
+                        }
+                    },
+                    backgroundImage: {
+                        'aurora': 'linear-gradient(135deg, #2B6CB0 0%, #38B2AC 100%)',
+                        'indigo-glow': 'linear-gradient(135deg, #4338CA 0%, #4F46E5 100%)',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow-mint': '0 0 20px rgba(56, 178, 172, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS for micro-animations -->
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .prism-hover {
+            transition: all 0.4s ease;
+        }
+        .prism-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
+        }
+        /* Gradiente para texto */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-surgical text-anthracite font-sans antialiased selection:bg-accent-mint selection:text-white">
+
+    <!-- Header Semántico -->
+    <header>
+        <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)" role="button" tabindex="0" aria-label="Ir al inicio">
+                        <!-- SVG Aurora Prism Isotype -->
+                        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M50 10L90 80H10L50 10Z" fill="url(#paint0_linear)"/>
+                            <path d="M50 10L50 80L10 80L50 10Z" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M50 80L90 80L50 45L50 80Z" fill="rgba(0,0,0,0.15)"/>
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="50" y1="10" x2="50" y2="80" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#1A365D"/>
+                                    <stop offset="1" stop-color="#38B2AC"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="flex flex-col">
+                            <span class="font-heading font-semibold text-xl tracking-widest text-anthracite leading-tight">LUMINOS</span>
+                            <span class="text-[9px] uppercase tracking-wider text-clinical-light font-medium">Centro Neuroclínico de Psicoterapia Avanzada</span>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#enfoque" class="text-sm font-medium text-gray-600 hover:text-clinical-blue transition-colors">Nuestro Enfoque</a>
+                        <a href="#tratamientos" class="text-sm font-medium text-gray-600 hover:text-clinical-blue transition-colors">Tratamientos</a>
+                        <a href="#experiencia" class="text-sm font-medium text-gray-600 hover:text-clinical-blue transition-colors">Experiencia Clínica</a>
+                        <a href="#integra" class="text-sm font-medium text-gray-600 hover:text-clinical-blue transition-colors">Programa Integra</a>
+                        <button onclick="document.getElementById('cta-final').scrollIntoView()" class="bg-clinical-blue text-white px-6 py-2.5 rounded-sm text-sm font-medium hover:bg-clinical-light transition-all shadow-md focus:ring-2 focus:ring-offset-2 focus:ring-clinical-blue" aria-label="Solicitar Consulta de Evaluación">
+                            Evaluación Médica
+                        </button>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button class="text-anthracite focus:outline-none focus:ring-2 focus:ring-clinical-blue rounded-sm p-1" id="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+                            <i class="ph ph-list text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden bg-white border-t border-gray-100" id="mobile-menu" aria-hidden="true">
+                <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
+                    <a href="#enfoque" class="block px-3 py-2 text-base font-medium text-gray-700">Nuestro Enfoque</a>
+                    <a href="#tratamientos" class="block px-3 py-2 text-base font-medium text-gray-700">Tratamientos</a>
+                    <a href="#experiencia" class="block px-3 py-2 text-base font-medium text-gray-700">Experiencia Clínica</a>
+                    <a href="#integra" class="block px-3 py-2 text-base font-medium text-gray-700">Programa Integra</a>
+                    <button onclick="document.getElementById('cta-final').scrollIntoView(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full mt-4 bg-clinical-blue text-white px-6 py-3 rounded-sm text-sm font-medium focus:ring-2 focus:ring-clinical-blue">
+                        Evaluación Médica
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Instalaciones de la Clínica Luminos" class="w-full h-full object-cover object-center opacity-30 grayscale blur-[2px]">
+                <div class="absolute inset-0 bg-gradient-to-r from-surgical via-surgical/95 to-surgical/70"></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl fade-in-up">
+                    <div class="inline-block border border-accent-mint/30 bg-accent-mint/5 px-4 py-1.5 rounded-full mb-6">
+                        <span class="text-xs font-semibold text-accent-mint uppercase tracking-widest">Centro Neuroclínico Avanzado</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-anthracite leading-tight mb-6">
+                        Restaurando tu bienestar a través de la <span class="bg-aurora text-gradient">neurociencia médica</span>.
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 font-light leading-relaxed max-w-2xl">
+                        Tratamientos médicos de vanguardia para condiciones complejas. Integramos psicoterapias innovadoras, micología médica y protocolos clínicos rigurosos en un entorno de máxima seguridad y privacidad.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="document.getElementById('cta-final').scrollIntoView()" class="bg-clinical-blue text-white px-8 py-4 rounded-sm font-semibold hover:bg-clinical-light transition-all shadow-lg text-center focus:ring-2 focus:ring-offset-2 focus:ring-clinical-blue">
+                            Solicitar Evaluación Médica
+                        </button>
+                        <button class="bg-white text-anthracite border border-gray-200 px-8 py-4 rounded-sm font-medium hover:bg-gray-50 transition-all shadow-sm text-center flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-200">
+                            <i class="ph ph-download-simple text-lg" aria-hidden="true"></i>
+                            Guía para Pacientes Nuevos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Condiciones Tratadas -->
+        <section id="condiciones" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-up">
+                    <h2 class="text-3xl font-heading font-semibold text-anthracite mb-4">Condiciones Médicas Tratadas</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto text-lg">Especializados en pacientes mayores de 30 años que requieren alternativas profundas cuando los abordajes convencionales han resultado insuficientes.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Condition 1 -->
+                    <article class="bg-surgical p-10 rounded-sm border border-gray-100 prism-hover fade-in-up" style="transition-delay: 100ms;">
+                        <div class="w-12 h-12 bg-clinical-blue/10 rounded-full flex items-center justify-center mb-6 text-clinical-blue">
+                            <i class="ph ph-brain text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-semibold mb-3">Depresión Resistente</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Diseñado para pacientes que han probado múltiples enfoques farmacológicos sin éxito sostenido. Buscamos restablecer y flexibilizar la red neuronal por defecto (DMN).
+                        </p>
+                    </article>
+                    <!-- Condition 2 -->
+                    <article class="bg-surgical p-10 rounded-sm border border-gray-100 prism-hover fade-in-up" style="transition-delay: 200ms;">
+                        <div class="w-12 h-12 bg-accent-mint/10 rounded-full flex items-center justify-center mb-6 text-accent-mint">
+                            <i class="ph ph-heartbeat text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-semibold mb-3">Ansiedad Crónica</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Abordaje profundo para la ansiedad generalizada y el miedo existencial que paraliza la funcionalidad diaria, facilitando un cambio de perspectiva duradero y medible.
+                        </p>
+                    </article>
+                    <!-- Condition 3 -->
+                    <article class="bg-surgical p-10 rounded-sm border border-gray-100 prism-hover fade-in-up" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 bg-accent-violet/10 rounded-full flex items-center justify-center mb-6 text-accent-violet">
+                            <i class="ph ph-activity text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-xl font-heading font-semibold mb-3">Dolor Neuropático</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Intervención en el procesamiento central del dolor. Para pacientes con dolor persistente de origen nervioso, combinando neuroprotección biológica y terapia psicológica.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestro Enfoque -->
+        <section id="enfoque" class="py-24 bg-surgical">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="lg:w-1/2 fade-in-up">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Investigación Médica Neuronal" loading="lazy" class="rounded-sm shadow-soft object-cover h-[500px] w-full grayscale-[20%]">
+                    </div>
+                    <div class="lg:w-1/2 fade-in-up" style="transition-delay: 200ms;">
+                        <h2 class="text-sm font-semibold text-clinical-light uppercase tracking-widest mb-3">Nuestro Enfoque</h2>
+                        <h3 class="text-3xl font-heading font-semibold text-anthracite mb-6 leading-tight">La Ciencia de la Neuroplasticidad</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            En LUMINOS no ofrecemos soluciones para adormecer síntomas. Nos basamos en el principio biológico de la <strong>neuroplasticidad</strong>: la capacidad inherente del cerebro para reorganizarse, formar nuevas conexiones sinápticas y "recablear" vías disfuncionales atrapadas en bucles de dolor o tristeza.
+                        </p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Nuestros protocolos clínicos de rigor abren una "ventana de maleabilidad" biológica temporal. Es en ese espacio donde la psicoterapia intensiva y el soporte nutracéutico actúan para consolidar cambios estructurales reales en su cerebro.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <i class="ph-fill ph-check-circle text-accent-mint text-xl mt-1" aria-hidden="true"></i>
+                                <div>
+                                    <h4 class="font-semibold text-anthracite">Medicina Basada en Evidencia</h4>
+                                    <p class="text-sm text-gray-500">Protocolos estandarizados y respaldados por las últimas investigaciones de instituciones globales.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i class="ph-fill ph-check-circle text-accent-mint text-xl mt-1" aria-hidden="true"></i>
+                                <div>
+                                    <h4 class="font-semibold text-anthracite">Supervisión Médica Integral</h4>
+                                    <p class="text-sm text-gray-500">Evaluación psiquiátrica completa antes, monitoreo continuo durante y acompañamiento posterior.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tratamientos (Core) -->
+        <section id="tratamientos" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-20 fade-in-up">
+                    <h2 class="text-3xl md:text-4xl font-heading font-semibold text-anthracite mb-4">Pilares de Tratamiento Innovador</h2>
+                    <p class="text-gray-500 max-w-3xl mx-auto text-lg">Soluciones clínicas precisas, diseñadas a través de un espectro escalonado de intensidad terapéutica y mecanismos de acción comprobados.</p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Pillar 1: Medical Mycology -->
+                    <article class="flex flex-col md:flex-row bg-surgical border border-gray-100 rounded-sm overflow-hidden prism-hover shadow-sm fade-in-up">
+                        <div class="md:w-1/3 bg-gray-50 p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col justify-center relative">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-accent-violet"></div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-accent-violet tracking-widest uppercase">LUMINOS Medical Series</span>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-anthracite mb-2">Micología Médica y Nutracéutica</h3>
+                            <span class="inline-block bg-white border border-gray-200 text-gray-500 text-xs px-3 py-1 rounded-full mb-4 w-max font-medium">NO Psicoactivo</span>
+                        </div>
+                        <div class="md:w-2/3 p-10 flex flex-col justify-center">
+                            <p class="text-gray-600 mb-6">Implementación de extractos de hongos estandarizados de grado médico (Luminos Protocols) para soporte neural, sin efectos alteradores de la conciencia. Ideal para pacientes que buscan neuroprotección, reducción de la inflamación cerebral sistémica o un complemento robusto a terapias tradicionales.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+                                <div><strong class="text-anthracite block mb-1">Mecanismo de Acción:</strong> Estimulación del Factor de Crecimiento Nervioso (NGF) e inmunomodulación.</div>
+                                <div><strong class="text-anthracite block mb-1">Compuestos:</strong> <em>Hericium erinaceus</em> (Melena de León) y <em>Ganoderma lucidum</em> purificados.</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pillar 2: Psilocybin Therapy -->
+                    <article class="flex flex-col md:flex-row bg-surgical border border-gray-100 rounded-sm overflow-hidden prism-hover shadow-sm fade-in-up">
+                        <div class="md:w-1/3 bg-gray-50 p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col justify-center relative">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-accent-mint"></div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-accent-mint tracking-widest uppercase">LUMINOS Sesiones</span>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-anthracite mb-2">Psicoterapia Asistida por Psilocibina</h3>
+                            <span class="inline-block bg-white border border-gray-200 text-gray-500 text-xs px-3 py-1 rounded-full mb-4 w-max font-medium">Experiencia Clínica Guiada</span>
+                        </div>
+                        <div class="md:w-2/3 p-10 flex flex-col justify-center">
+                            <p class="text-gray-600 mb-6">Sesiones clínicas transformadoras utilizando compuestos sintéticos certificados (<span class="font-semibold text-anthracite">Luminos Rx</span>). Este protocolo requiere tres fases estrictas: Preparación Psicológica inicial, la Sesión de Experiencia en nuestras salas monitorizadas, y el soporte de Integración post-sesión.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+                                <div><strong class="text-anthracite block mb-1">Indicaciones:</strong> Depresión resistente grave, trauma complejo y ansiedad de fin de vida.</div>
+                                <div><strong class="text-anthracite block mb-1">Mecanismo de Acción:</strong> Silenciamiento temporal de la red neuronal predeterminada (DMN).</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pillar 3: Integrated Neuro-Mycology -->
+                    <article class="flex flex-col md:flex-row bg-anthracite text-white rounded-sm overflow-hidden prism-hover shadow-lg fade-in-up relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-accent-gold to-yellow-600 rounded-sm blur opacity-20" aria-hidden="true"></div>
+                        
+                        <div class="md:w-1/3 bg-gray-900 p-10 border-b md:border-b-0 md:border-r border-gray-700 flex flex-col justify-center relative z-10">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-accent-gold"></div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xs font-bold text-accent-gold tracking-widest uppercase">LUMINOS Reserve</span>
+                            </div>
+                            <h3 class="text-2xl font-heading font-bold text-white mb-2">Neuro-Micología Integrada</h3>
+                            <span class="inline-block bg-gray-800 border border-gray-600 text-gray-300 text-xs px-3 py-1 rounded-full mb-4 w-max font-medium">Protocolo Premium Completo</span>
+                        </div>
+                        <div class="md:w-2/3 p-10 flex flex-col justify-center relative z-10">
+                            <p class="text-gray-300 mb-6">Nuestro protocolo más avanzado. Combina estratégicamente la "ventana de neuroplasticidad profunda" inducida por la sesión de psilocibina (el salto) con el soporte biológico continuo de la micología médica (el anclaje) para consolidar las nuevas vías neuronales a largo plazo.</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
+                                <div><strong class="text-white block mb-1">Sinergia Clínica:</strong> Reestructuración emocional profunda + Nutrición neural estructural.</div>
+                                <div><strong class="text-white block mb-1">Duración:</strong> Protocolo intensivo + 6 meses de acompañamiento nutracéutico.</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Mid-Page CTA (Chatbot Trigger) -->
+                <div class="mt-16 text-center fade-in-up">
+                    <p class="text-sm text-gray-500 mb-4 font-medium uppercase tracking-wider">¿Deseas saber qué pilar es el adecuado para ti?</p>
+                    <button onclick="toggleChat()" class="bg-accent-mint hover:bg-teal-500 text-white px-8 py-4 rounded-sm font-semibold transition-all shadow-md text-lg flex items-center justify-center gap-3 mx-auto focus:ring-2 focus:ring-offset-2 focus:ring-accent-mint" aria-label="Abrir asistente de triaje">
+                        <i class="ph ph-sparkle text-xl" aria-hidden="true"></i> 
+                        Iniciar Asistente de Triaje Médico
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- La Experiencia LUMINOS (Seguridad) -->
+        <section id="experiencia" class="py-24 bg-anthracite text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none" aria-hidden="true">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-current text-white"><path d="M50 10L90 80H10L50 10Z"/></svg>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                    <h2 class="text-sm font-semibold text-clinical-light uppercase tracking-widest mb-3">Seguridad y Entorno</h2>
+                    <h3 class="text-3xl font-heading font-semibold mb-4">Control Clínico Absoluto</h3>
+                    <p class="text-gray-300">
+                        Entendemos que dar este paso requiere confianza. Nuestras instalaciones eliminan cualquier elemento recreativo para ofrecer un entorno de rigor hospitalario envuelto en una estética de calma profunda. Tu seguridad física y emocional es nuestra métrica principal.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-up" style="transition-delay: 200ms;">
+                    <!-- Seguridad Card 1 -->
+                    <div class="bg-gray-800 border border-gray-700 p-8 rounded-sm hover:border-gray-500 transition-colors">
+                        <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-clinical-light mb-6">
+                            <i class="ph ph-stethoscope text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="text-lg font-heading font-semibold text-white mb-2">Triaje Riguroso</h4>
+                        <p class="text-sm text-gray-400">Evaluación exhaustiva psiquiátrica, cardiológica y revisión de interacciones medicamentosas previa admisión.</p>
+                    </div>
+                    <!-- Seguridad Card 2 -->
+                    <div class="bg-gray-800 border border-gray-700 p-8 rounded-sm hover:border-gray-500 transition-colors">
+                        <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-clinical-light mb-6">
+                            <i class="ph ph-heartbeat text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="text-lg font-heading font-semibold text-white mb-2">Monitoreo Fisiológico</h4>
+                        <p class="text-sm text-gray-400">Control constante de presión arterial, ritmo cardíaco y oxigenación durante toda la sesión clínica.</p>
+                    </div>
+                    <!-- Seguridad Card 3 -->
+                    <div class="bg-gray-800 border border-gray-700 p-8 rounded-sm hover:border-gray-500 transition-colors">
+                        <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-clinical-light mb-6">
+                            <i class="ph ph-users-three text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="text-lg font-heading font-semibold text-white mb-2">Equipo Especializado</h4>
+                        <p class="text-sm text-gray-400">Cada paciente es acompañado por un equipo dual: un psiquiatra certificado y un facilitador terapéutico.</p>
+                    </div>
+                    <!-- Seguridad Card 4 -->
+                    <div class="bg-gray-800 border border-gray-700 p-8 rounded-sm hover:border-gray-500 transition-colors">
+                        <div class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-clinical-light mb-6">
+                            <i class="ph ph-couch text-2xl" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="text-lg font-heading font-semibold text-white mb-2">Luminos Sesiones</h4>
+                        <p class="text-sm text-gray-400">Salas de tratamiento privadas, diseñadas acústicamente y lumínicamente para reducir estímulos externos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LUMINOS Integra (Seguimiento) -->
+        <section id="integra" class="py-24 bg-accent-mint/5 border-y border-accent-mint/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="lg:w-1/2 fade-in-up">
+                        <h2 class="text-sm font-semibold text-accent-mint uppercase tracking-widest mb-3">Soporte Continuo</h2>
+                        <h3 class="text-3xl font-heading font-semibold text-anthracite mb-6 leading-tight">Luminos Integra: Consolidando tu Evolución</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            La experiencia clínica es solo el catalizador; la verdadera sanación ocurre en las semanas posteriores. <strong>El programa Integra</strong> es el componente psicológico más crítico de nuestro modelo.
+                        </p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Utilizando principios de psicología comunitaria y cognitivo-conductual, te acompañamos para traducir los "insights" profundos obtenidos durante la terapia en hábitos, perspectivas y cambios conductuales sostenibles en tu vida diaria, anclando permanentemente la neuroplasticidad alcanzada.
+                        </p>
+                        
+                        <div class="bg-white p-6 rounded-sm border border-gray-200 shadow-sm flex items-start gap-4">
+                            <div class="bg-accent-mint/10 p-3 rounded-full text-accent-mint flex-shrink-0">
+                                <i class="ph ph-hands-clapping text-2xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-anthracite mb-1">Círculos de Integración</h4>
+                                <p class="text-sm text-gray-500">Sesiones individuales post-tratamiento y la opción de participar en grupos cerrados de pacientes LUMINOS para construir una red de apoyo mutuo guiada por psicólogos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 fade-in-up" style="transition-delay: 200ms;">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Sesión de integración psicológica" loading="lazy" class="rounded-sm shadow-soft object-cover h-[450px] w-full border border-gray-100">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investigación y Academia -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-up">
+                    <h2 class="text-3xl font-heading font-semibold text-anthracite mb-4">Liderando la Medicina del Futuro</h2>
+                    <p class="text-gray-500 max-w-2xl mx-auto">Nuestro compromiso se extiende más allá de nuestros pacientes; buscamos avanzar en la ciencia y formar a la próxima generación de profesionales de la salud.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Research -->
+                    <div class="bg-indigo-50 p-10 border border-indigo-100 rounded-sm shadow-sm fade-in-up">
+                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-accent-indigo shadow-sm mb-6">
+                            <i class="ph ph-microscope text-3xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-semibold text-anthracite mb-3">Luminos Research Institute</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">No operamos en base a tendencias, operamos en base a datos. Acceda a nuestro repositorio público de estudios clínicos, metaanálisis, papers académicos sobre la eficacia y bioseguridad de la micología médica y la terapia asistida por psilocibina.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-accent-indigo font-semibold hover:text-indigo-800 transition-colors group">
+                            Revisar Evidencia Científica 
+                            <i class="ph ph-arrow-right transform group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <!-- Academy -->
+                    <div class="bg-indigo-50 p-10 border border-indigo-100 rounded-sm shadow-sm fade-in-up" style="transition-delay: 150ms;">
+                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-accent-indigo shadow-sm mb-6">
+                            <i class="ph ph-graduation-cap text-3xl" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-semibold text-anthracite mb-3">Luminos Academy</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Dedicados a la profesionalización estricta del sector. Ofrecemos programas de formación avanzada, prácticas clínicas supervisadas y certificación rigurosa para psiquiatras, médicos y psicoterapeutas licenciados.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-accent-indigo font-semibold hover:text-indigo-800 transition-colors group">
+                            Programas para Profesionales 
+                            <i class="ph ph-arrow-right transform group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section (CRO Focus) -->
+        <section id="cta-final" class="py-24 bg-surgical border-t border-gray-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-up">
+                <i class="ph-fill ph-plant text-4xl text-clinical-light mb-6 opacity-80" aria-hidden="true"></i>
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-anthracite mb-6">Da el primer paso hacia una recuperación profunda.</h2>
+                <p class="text-gray-600 mb-10 text-lg">Comienza con una evaluación confidencial con nuestro equipo médico para determinar si eres un candidato adecuado para nuestros protocolos clínicos.</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button class="w-full sm:w-auto bg-clinical-blue text-white px-10 py-4 rounded-sm font-semibold hover:bg-clinical-light transition-all shadow-lg text-center text-lg focus:ring-2 focus:ring-offset-2 focus:ring-clinical-blue">
+                        Agendar Evaluación Médica
+                    </button>
+                    <span class="text-gray-400 text-sm hidden sm:block">o</span>
+                    <button onclick="toggleChat()" class="w-full sm:w-auto bg-white text-anthracite border border-gray-300 px-8 py-4 rounded-sm font-medium hover:bg-gray-50 transition-all shadow-sm text-center flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                        Hablar con Asistente
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 mt-6"><i class="ph ph-lock-key" aria-hidden="true"></i> Toda la información compartida está protegida bajo estándares HIPAA/GDPR.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-anthracite text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-6 opacity-60">
+                        <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M50 10L90 80H10L50 10Z" fill="#ffffff"/>
+                        </svg>
+                        <span class="font-heading font-semibold tracking-widest text-white">LUMINOS</span>
+                    </div>
+                    <p class="text-sm mb-6">Elevando el estándar de cuidado en salud mental a través de la ciencia biológica, la compasión y la innovación clínica rigurosa.</p>
+                    <div class="flex gap-4">
+                        <a href="#" aria-label="LinkedIn LUMINOS" class="hover:text-white transition-colors"><i class="ph ph-linkedin-logo text-2xl" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Contacto Email" class="hover:text-white transition-colors"><i class="ph ph-envelope-simple text-2xl" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Contacto Clínico</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="ph ph-map-pin mt-1 text-gray-500" aria-hidden="true"></i>
+                            <span>Av. de la Innovación Médica 404,<br>Distrito de Salud, Ciudad</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-phone text-gray-500" aria-hidden="true"></i>
+                            <span>+1 (800) 555-0199</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph ph-envelope text-gray-500" aria-hidden="true"></i>
+                            <span>admisiones@luminos.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#tratamientos" class="hover:text-white transition-colors">Protocolos Clínicos</a></li>
+                        <li><a href="#integra" class="hover:text-white transition-colors">Programa Integra</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Nuestro Equipo Médico</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Network -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Luminos Network</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Portal para Pacientes</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Luminos Research Institute</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Luminos Academy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Medical Disclaimer - CRITICAL -->
+            <div class="border-t border-gray-700 pt-8 mt-8">
+                <div class="bg-gray-800 p-6 rounded-sm text-xs leading-relaxed text-gray-500 border-l-4 border-gray-600">
+                    <strong class="text-gray-300 block mb-2 uppercase tracking-wide">Descargo de Responsabilidad Médica y Legal</strong>
+                    La información contenida en este sitio web tiene fines estrictamente educativos e informativos. No constituye consejo, diagnóstico o prescripción médica profesional. LUMINOS Centro Neuroclínico de Psicoterapia Avanzada opera en estricto cumplimiento con las regulaciones sanitarias y legales vigentes (incluyendo normativas HIPAA/GDPR para la protección de datos). Los tratamientos con compuestos regulados (como la psilocibina sintética) se administran exclusivamente dentro de marcos clínicos aprobados, estudios clínicos autorizados, o en jurisdicciones específicas donde su uso compasivo o médico está plenamente autorizado por la ley, siempre bajo supervisión psiquiátrica presencial. Los protocolos LUMINOS Reserve están sujetos a estrictos criterios de elegibilidad y triaje médico. La seguridad del paciente es el pilar central de nuestras operaciones. <strong>En caso de emergencia médica, psiquiátrica o pensamientos autolíticos, contacte a los servicios de emergencia (Ej. 911) de su localidad inmediatamente o acuda al hospital más cercano.</strong>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-center mt-6 text-xs text-gray-600">
+                    <p>&copy; 2026 LUMINOS Centro Neuroclínico de Psicoterapia Avanzada. Todos los derechos reservados.</p>
+                    <div class="flex flex-wrap gap-4 mt-4 md:mt-0 justify-center">
+                        <a href="#" class="hover:text-white transition-colors">Política de Privacidad</a>
+                        <a href="#" class="hover:text-white transition-colors">Términos de Servicio</a>
+                        <a href="#" class="hover:text-white transition-colors">Consentimiento Informado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Button -->
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 bg-clinical-blue text-white w-14 h-14 rounded-full shadow-2xl hover:bg-clinical-light transition-transform hover:scale-105 z-50 flex items-center justify-center group focus:outline-none focus:ring-4 focus:ring-clinical-blue/50" aria-label="Abrir asistente de triaje flotante" aria-expanded="false" aria-controls="chat-window">
+        <i class="ph ph-chat-teardrop-text text-2xl group-hover:hidden" aria-hidden="true"></i>
+        <i class="ph ph-sparkle text-2xl hidden group-hover:block" aria-hidden="true"></i>
+    </button>
+
+    <!-- Chat Window Modal -->
+    <div id="chat-window" class="fixed bottom-24 right-6 w-[350px] sm:w-[400px] h-[550px] bg-white rounded-sm shadow-2xl flex flex-col z-50 hidden border border-gray-200 overflow-hidden font-sans" aria-hidden="true">
+        <!-- Chat Header -->
+        <div class="bg-anthracite text-white p-4 flex justify-between items-center shadow-md z-10">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-clinical-blue to-accent-mint flex items-center justify-center">
+                    <i class="ph ph-brain text-white" aria-hidden="true"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading font-semibold text-sm tracking-wide">Asistente LUMINOS</span>
+                    <span class="text-[10px] text-accent-mint">Inteligencia Artificial Médica</span>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-gray-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white rounded-sm" aria-label="Cerrar chat">
+                <i class="ph ph-x text-xl" aria-hidden="true"></i>
+            </button>
+        </div>
+        
+        <!-- Chat Disclaimer -->
+        <div class="bg-yellow-50 border-b border-yellow-100 p-2 text-[10px] text-yellow-800 text-center leading-tight flex items-center justify-center gap-2">
+            <i class="ph-fill ph-warning-circle text-sm" aria-hidden="true"></i>
+            No sustituye el consejo médico. En caso de emergencia, llama al 911.
+        </div>
+        
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 scroll-smooth" role="log" aria-live="polite">
+            <!-- Initial Message -->
+            <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-clinical-blue to-accent-mint flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="ph ph-sparkle text-white text-sm" aria-hidden="true"></i>
+                </div>
+                <div class="bg-white p-3 rounded-sm shadow-sm border border-gray-100 text-sm text-gray-700 rounded-tl-none leading-relaxed">
+                    Hola. Soy el asistente de orientación de LUMINOS. Estoy aquí para resolver tus dudas sobre nuestros protocolos con micología y psilocibina, o ayudarte a prepararte para una evaluación médica formal. ¿En qué te puedo ayudar hoy?
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="p-3 bg-white border-t border-gray-100 flex gap-2 items-center">
+            <label for="chat-input" class="sr-only">Escribe tu consulta</label>
+            <input type="text" id="chat-input" placeholder="Escribe tu consulta aquí..." class="flex-1 border border-gray-200 rounded-sm px-4 py-2 text-sm focus:outline-none focus:border-clinical-light focus:ring-1 focus:ring-clinical-light transition-all bg-gray-50" onkeypress="handleEnter(event)">
+            <button onclick="sendMessage()" class="bg-clinical-blue text-white w-10 h-10 rounded-sm hover:bg-clinical-light transition-colors flex items-center justify-center flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-clinical-blue" aria-label="Enviar mensaje">
+                <i class="ph-fill ph-paper-plane-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            const isHidden = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            btn.setAttribute('aria-expanded', !isHidden);
+            menu.setAttribute('aria-hidden', isHidden);
+        });
+
+        // Sticky Navbar background change on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-sm');
+            }
+        });
+
+        // Scroll Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Run once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach((elem) => {
+            observer.observe(elem);
+        });
+
+        // ==========================================
+        // Gemini AI Assistant Integration
+        // ==========================================
+        const chatWindow = document.getElementById('chat-window');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatBtn = document.querySelector('button[aria-controls="chat-window"]');
+        
+        let chatHistory = [];
+        const systemPrompt = `Eres el Asistente Clínico Virtual de LUMINOS, un Centro Neuroclínico de Psicoterapia Avanzada. Tu objetivo es proporcionar información sobre nuestros 3 pilares de tratamiento (Micología Médica NO psicoactiva, Psicoterapia asistida por Psilocibina y Neuro-Micología Integrada), responder dudas frecuentes y guiar al paciente hacia una consulta médica presencial. 
+        Mantén un tono profesional, empático, científico y muy respetuoso. 
+        REGLAS ESTRICTAS: 
+        1. ACLARA en tu primera respuesta que eres una IA y NO puedes dar diagnósticos médicos, prescribir tratamientos ni alterar dosis. 
+        2. Dirígete a pacientes adultos (mayores de 30 años). 
+        3. Nunca uses lenguaje excesivamente místico o "hippie", somos una clínica médica de rigor científico.
+        4. Sé conciso y formatea tus respuestas con viñetas o negritas para facilitar la lectura.`;
+
+        function toggleChat() {
+            const isHidden = chatWindow.classList.contains('hidden');
+            chatWindow.classList.toggle('hidden');
+            chatWindow.setAttribute('aria-hidden', !isHidden);
+            if (chatBtn) chatBtn.setAttribute('aria-expanded', isHidden);
+            
+            if (isHidden) {
+                setTimeout(() => chatInput.focus(), 100);
+            }
+        }
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function addMessageToUI(text, isUser) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex gap-3 ${isUser ? 'flex-row-reverse' : ''}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = `w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${isUser ? 'bg-gray-300' : 'bg-gradient-to-tr from-clinical-blue to-accent-mint'}`;
+            avatar.innerHTML = isUser ? '<i class="ph-fill ph-user text-white text-sm" aria-hidden="true"></i>' : '<i class="ph ph-sparkle text-white text-sm" aria-hidden="true"></i>';
+            
+            const textBubble = document.createElement('div');
+            textBubble.className = `p-3 rounded-sm shadow-sm border border-gray-100 text-sm text-gray-700 leading-relaxed ${isUser ? 'bg-surgical rounded-tr-none' : 'bg-white rounded-tl-none'}`;
+            
+            // Format markdown-like text (bolding and line breaks)
+            const formattedText = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-anthracite">$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+            textBubble.innerHTML = formattedText;
+            
+            msgDiv.appendChild(avatar);
+            msgDiv.appendChild(textBubble);
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addLoadingIndicator() {
+            const loadingId = 'loading-' + Date.now();
+            const msgDiv = document.createElement('div');
+            msgDiv.id = loadingId;
+            msgDiv.className = `flex gap-3`;
+            msgDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-clinical-blue to-accent-mint flex items-center justify-center flex-shrink-0 mt-1">
+                    <i class="ph ph-sparkle text-white text-sm" aria-hidden="true"></i>
+                </div>
+                <div class="bg-white p-4 rounded-sm shadow-sm border border-gray-100 rounded-tl-none flex items-center gap-1.5" aria-label="El asistente está escribiendo...">
+                    <div class="w-1.5 h-1.5 bg-accent-mint rounded-full animate-bounce"></div>
+                    <div class="w-1.5 h-1.5 bg-accent-mint rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
+                    <div class="w-1.5 h-1.5 bg-accent-mint rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+                </div>
+            `;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return loadingId;
+        }
+
+        function removeLoadingIndicator(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        async function fetchGeminiResponse(userText) {
+            // Se mantiene la llamada a la función serverless de Netlify para seguridad
+            const apiUrl = `/.netlify/functions/chat`;
+            
+            const contents = chatHistory.map(msg => ({
+                role: msg.role,
+                parts: [{ text: msg.text }]
+            }));
+            
+            contents.push({
+                role: "user",
+                parts: [{ text: userText }]
+            });
+
+            const payload = {
+                contents: contents,
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            let delay = 1000;
+            const maxRetries = 3;
+            
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) throw new Error('API Error');
+                    
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text;
+                    } else {
+                        throw new Error('Invalid response format');
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        return "Disculpa, nuestros sistemas están experimentando una alta demanda técnica en este momento. Por favor, comunícate directamente a nuestra línea telefónica para recibir asistencia.";
+                    }
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; // Exponential backoff for robustness
+                }
+            }
+        }
+
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+            
+            // 1. User Message to UI
+            addMessageToUI(text, true);
+            chatInput.value = '';
+            
+            // 2. Loading State
+            const loadingId = addLoadingIndicator();
+            
+            // 3. LLM API Call
+            const responseText = await fetchGeminiResponse(text);
+            
+            // 4. AI Message to UI
+            removeLoadingIndicator(loadingId);
+            addMessageToUI(responseText, false);
+            
+            // 5. Save History context for multi-turn conversational ability
+            chatHistory.push({ role: "user", text: text });
+            chatHistory.push({ role: "model", text: responseText });
+        }
+    </script>
+</body>
+</html>
