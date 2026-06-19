@@ -1,58 +1,55 @@
-// Esta función actúa como tu servidor privado seguro.
-// Los pacientes no pueden ver este código en su navegador.
-
-exports.handler = async function(event, context) {
-  // 1. Verificamos que solo se permitan peticiones POST (envío de datos)
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Método no permitido' };
-  }
-
-  // 2. Tomamos tu API Key desde las "Variables de Entorno" secretas de Netlify.
-  // ¡Nunca la escribimos aquí directamente!
-  const apiKey = process.env.GOOGLE_API_KEY;
-  
-  if (!apiKey) {
-    console.error("Error: La API Key no está configurada en Netlify.");
-    return { 
-      statusCode: 500, 
-      body: JSON.stringify({ error: 'Configuración de servidor incompleta.' }) 
-    };
+exports.handler = async (event, context) => {
+  // 1. Verificamos que sea una petición POST
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
   }
 
   try {
-    // 3. Leemos lo que nos envió la página web (el mensaje del paciente y el historial)
-    const body = JSON.parse(event.body);
-    const { contents, systemInstruction } = body;
-
-    // 4. Preparamos la llamada a Google Gemini, ahora sí usando la llave secreta
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents, systemInstruction })
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error de la API de Google: ${response.status}`);
+    // 2. Extraemos el mensaje (prompt) de tu index.html
+    const { prompt } = JSON.parse(event.body);
+    if (!prompt) {
+      return { statusCode: 400, body: JSON.stringify({ error: "El prompt está vacío" }) };
     }
 
-    // 5. Recibimos la respuesta de Google y se la enviamos de vuelta a tu página web
-    const data = await response.json();
+    const apiKey = process.env.GOOGLE_API_KEY;
     
+    // 3. Llamamos a la API de Google de forma directa (sin librerías problemáticas)
+    const googleURL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+
+    const response = await fetch(googleURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
+
+    const data = await response.json();
+
+    // 4. Si Google nos da un error (como un 400), lo capturamos y lo mostramos claro
+    if (!response.ok) {
+      console.error("Detalle exacto del error de Google:", JSON.stringify(data));
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: `Google rechazó la petición: ${data.error?.message || 'Error desconocido'}` })
+      };
+    }
+
+    // 5. Si todo sale bien, enviamos la respuesta de vuelta a tu web
+    const reply = data.candidates[0].content.parts[0].text;
+
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ reply: reply }),
     };
 
   } catch (error) {
-    console.error("Error en el servidor seguro:", error);
+    console.error("Error general en el servidor:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'No se pudo conectar con la Inteligencia Artificial.' })
+      body: JSON.stringify({ error: "Error interno del servidor" }),
     };
   }
 };
